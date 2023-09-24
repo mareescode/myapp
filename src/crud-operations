@@ -1,0 +1,81 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+<!-- function MyComponent() { -->
+  const [data, setData] = useState([]);
+  const [newItem, setNewItem] = useState('');
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://api.example.com/items');
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const createItem = async () => {
+    try {
+      const response = await axios.post('https://api.example.com/items', { name: newItem });
+      setData([...data, response.data]);
+      setNewItem('');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateItem = async () => {
+    try {
+      const response = await axios.put(`https://api.example.com/items/${selectedItem.id}`, {
+        name: selectedItem.name
+      });
+      const updatedData = data.map(item => (item.id === selectedItem.id ? response.data : item));
+      setData(updatedData);
+      setSelectedItem(null);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteItem = async (itemId) => {
+    try {
+      await axios.delete(`https://api.example.com/items/${itemId}`);
+      const updatedData = data.filter(item => item.id !== itemId);
+      setData(updatedData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const selectItem = (item) => {
+    setSelectedItem(item);
+  };
+
+  <!-- return (
+    <div>
+      <h1>Items</h1>
+      <ul>
+        {data.map(item => (
+          <li key={item.id}>
+            {item.name}
+            <button onClick={() => selectItem(item)}>Edit</button>
+            <button onClick={() => deleteItem(item.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+
+      <h2>{selectedItem ? 'Edit Item' : 'Add Item'}</h2>
+      <input
+        type="text"
+        value={selectedItem ? selectedItem.name : newItem}
+        onChange={e => selectedItem ? setSelectedItem({ ...selectedItem, name: e.target.value }) : setNewItem(e.target.value)}
+      />
+      <button onClick={selectedItem ? updateItem : createItem}>{selectedItem ? 'Update' : 'Create'}</button>
+    </div>
+  );
+} -->

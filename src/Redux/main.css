@@ -1,0 +1,49 @@
+*{
+   box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* product css--------------------- */
+#cardbutton{
+    background-color: crimson;
+}
+#cardbutton:active{
+    background-color: rgb(255, 247, 0);
+}
+/* search box-------------------- */
+#serachbox{
+    margin-left:200px;
+    border-radius: 5px;
+    font-size: 23px;
+    
+    }
+#serachbutton{
+    color: blue;
+    border-radius: 10px;
+}
+/* ------------------------------------------------ */
+#navbarSupportedContent{
+    margin-left: auto;
+}
+/* Header part */
+.maincontainer{
+    background-color: rgb(234, 164, 0);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* footer part */
+.footercontainer{
+height: 200px;
+/* display: grid; */
+display: flex;
+/* place-items: center; */
+padding: 10px;
+justify-content: space-evenly;
+align-items: center;
+}
+#a:hover{
+text-decoration: none;
+background-color: rgb(0, 0, 0);
+}
